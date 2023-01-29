@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    username: ${APP_DB_USER:postgres}
+    password: ${APP_DB_PASS:postgres}
+    url: jdbc:postgresql://${APP_DB_HOST:postgres-compose}:${APP_DB_PORT:5432}/${APP_DB_NAME:iw_db}
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+app:
+  oauth2-config:
+    clientId: fac.apis
+    clientSecret: development
+    #    clientId: 187570334693-l44l5mg2s1ec2jb820j9dhvfvrbb0jun.apps.googleusercontent.com
+    #    clientSecret: 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
+    redirectUri: http://localhost:8080
+    issuer: http://www.google.com
+  app-key-store:
+    pair-name: investment-oauth-jwt
+    password: fbiswats
+    path: classpath:authserver1-jwt.jks
+  jwt-config:
+    secret: iwauth
+    time: 1000 * 60 * 60 * 10
+  mail-config:
+    from: enwerevincent@gmail.com
